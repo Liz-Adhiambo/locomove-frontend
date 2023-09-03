@@ -4,6 +4,10 @@ import { useState, FormEvent, ChangeEvent } from 'react';
 interface FormData {
   username: string;
   password: string;
+  email: string;
+  dob: string;
+  gender: string;
+
   // ... add other fields as required
 }
 
@@ -11,6 +15,9 @@ export default function Signup() {
   const [formData, setFormData] = useState<FormData>({
     username: '',
     password: '',
+    email: '',
+    dob: '',
+    gender: '',
     // ... add other fields as required
   });
 
@@ -47,6 +54,7 @@ export default function Signup() {
           onChange={handleChange}
           placeholder="Username"
         />
+        <label>Username</label>
         <input
           type="password"
           name="password"
