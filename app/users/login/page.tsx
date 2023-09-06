@@ -1,6 +1,7 @@
 "use client"
 import { useState, FormEvent, ChangeEvent } from 'react';
-import styles from './users.module.css'
+import styles from './login.module.css'
+
 
 interface FormData {
   username: string;
@@ -46,27 +47,36 @@ export default function Signup() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          className={styles.inputbox}
-          value={formData.username}
-          onChange={handleChange}
-          placeholder="Username"
-        />
-        <label>Username</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Password"
-        />
-        {/* ... other fields ... */}
-        <button type="submit">Signup</button>
-      </form>
+    <div className={styles.login}>
+        <div className={styles.card}>
+            
+            <form onSubmit={handleSubmit}>
+                <div>
+            {/* <label className={styles.label}>Email</label> */}
+                <input
+                type="text"
+                name="email"
+                className={styles.inputbox}
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="example@email.com"
+                />
+                </div>
+                <div>
+            {/* <label className={styles.label}>Password</label> */}
+                <input
+                type="password"
+                name="password"
+                className={styles.inputbox}
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Password"
+                />
+                </div>
+            {/* <p>forgot password? </p> */}
+            <button className={styles.button} type="submit">Login</button>
+            </form>
+        </div>
     </div>
   );
 }
