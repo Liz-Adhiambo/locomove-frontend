@@ -49,7 +49,7 @@ export default function Signup() {
   return (
     <div className={styles.login}>
         <div className={styles.card}>
-            
+
             <form onSubmit={handleSubmit}>
                 <div>
             {/* <label className={styles.label}>Email</label> */}
