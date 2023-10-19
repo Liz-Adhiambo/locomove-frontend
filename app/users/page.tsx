@@ -1,72 +1,61 @@
-"use client"
-import { useState, FormEvent, ChangeEvent } from 'react';
-import styles from './users.module.css'
+"use client";
+import { validateLogin } from "@/features/validate";
+import styles from "./signup/signup.module.css";
+import { fetchApiPost } from "@/features/api";
 
-interface FormData {
-  username: string;
-  password: string;
-  email: string;
-  dob: string;
-  gender: string;
+export default function Login() {
 
-  // ... add other fields as required
-}
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-export default function Signup() {
-  const [formData, setFormData] = useState<FormData>({
-    username: '',
-    password: '',
-    email: '',
-    dob: '',
-    gender: '',
-    // ... add other fields as required
-  });
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+        if (!validateLogin(data)) {
+            return;
+        }
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const response = await fetch('YOUR_DJANGO_BACKEND_URL/signup/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+        const headers = {
+            "Content-Type": "application/x-www-form-urlencoded",
+        }
 
-    const data = await response.json();
-    if (response.ok) {
-      // Handle successful signup, like redirecting to login page
-    } else {
-      // Handle errors, maybe display them to the user
+        const loginData = `username=${data.username}&password=${data.password}&grant_type=password`;
+
+
+        const result = await fetchApiPost("/users/login", loginData, headers);
+
+        if (result.error) {
+            console.log(result.error);
+            return;
+        }
+
+        window.localStorage.setItem("token", result.access_token);
+        window.localStorage.setItem("refresh", result.refresh_token);
+
+        console.log(window.localStorage.getItem("token"));
+        console.log(window.localStorage.getItem("refresh"));
+
+        window.location.href = '/land';
     }
-  };
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          className={styles.inputbox}
-          value={formData.username}
-          onChange={handleChange}
-          placeholder="Username"
-        />
-        <label>Username</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Password"
-        />
-        {/* ... other fields ... */}
-        <button type="submit">Signup</button>
-      </form>
-    </div>
-  );
+
+    return (
+        <div className={styles.container}>
+            <h1>Sign Up</h1>
+            <div className={styles.form}>
+                <form onSubmit={handleSubmit}>
+                    <div className={styles.field}>
+                        <label htmlFor="username">Username</label>
+                        <input type="text" name="username" id="username" />
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" id="password" />
+                    </div>
+                <div className={styles.btncont}><button type="submit" className={styles.submit}>Sign Up</button></div>
+                </form>
+            </div>
+        </div>
+
+    );
 }

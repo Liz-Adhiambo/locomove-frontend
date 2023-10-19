@@ -1,0 +1,47 @@
+.container {
+    width: 500px;
+    margin: auto;
+    border: 3px solid rgb(var(--primary));
+    border-radius: 10px;
+    padding: 2rem 6rem;
+    margin-top: 2rem;
+}
+
+.container h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.field {
+    margin-bottom: 1.5rem;
+    display:flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.field label {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.field input{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.btncont{
+    display: flex;
+    justify-content: center;
+}
+
+.submit {
+    color: white;
+    background-color: rgb(var(--primary));
+    padding:0.5rem 3rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+}

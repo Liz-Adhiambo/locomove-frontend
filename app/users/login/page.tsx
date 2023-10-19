@@ -46,6 +46,8 @@ export default function Signup() {
     }
   };
 
+  console.log(window.localStorage.getItem('user'));
+
   return (
     <div className={styles.login}>
         <div className={styles.card}>

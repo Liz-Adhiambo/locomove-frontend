@@ -1,6 +1,6 @@
 import styles from './nav.module.css'
 
-export default function Navigation() {
+export default function Navigation({navClick}) {
     return (
         <nav className={styles.nav}>
             <div className={styles.logo}>
@@ -13,7 +13,7 @@ export default function Navigation() {
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Contact Us</a></li>
             </ul>
-            <button className={styles.navButton}>Get Started</button>
+            <button className={styles.navButton} onClick={navClick}>Get Started</button>
         </nav>
     )
 }
