@@ -1,0 +1,113 @@
+.container {
+    display: flex;
+}
+
+.navbar {
+    width: 25%;
+    height: 100vh;
+    border-right: 1px solid lightgray;
+}
+
+.main {
+    width: 75%;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.navbar h1{
+    font-size:2rem;
+    font-weight:600;
+    text-align:center;
+    margin-top:5rem;
+}
+
+.avi {
+    width:fit-content;
+    margin: 5rem auto;
+    display: flex;
+}
+
+.options{
+    display:flex;
+    flex-direction:column;
+}
+
+.option{
+    border-top: 1px solid lightgray;
+    padding: 1rem 1rem;
+}
+
+.option:hover{
+    background-color: lightgray;
+}
+
+.options div:last-child{
+    border-bottom: 1px solid lightgray;
+}
+
+.button {
+    width:fit-content;
+    margin: 5rem auto;
+}
+
+.main h1{
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top:5rem;
+    margin-bottom: 3rem;
+    padding-left: 3rem;
+}
+
+.step {
+    width: 500px;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.items{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin:2rem 0;
+}
+
+.info{
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-align: center;
+    margin:2rem 0;
+}
+
+.form {
+    width: 500px;
+    margin:auto;
+    padding: 0 2rem;
+}
+
+.form form {
+    margin-top: 4rem;
+    display:flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.requests {
+    display:flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 2rem;
+}
+

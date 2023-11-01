@@ -1,0 +1,30 @@
+.items{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin:2rem 0;
+}
+
+.card {
+    max-width: 600px;
+}
+
+.cardfooter{
+    display:flex;
+    justify-content: flex-end;
+    gap:1rem;
+}
+
+.cardfooter button:hover {
+    text-decoration: underline;
+}
+
+.cardheader {
+    display:flex;
+    justify-content:space-between;
+}
+
+.cardheader div:last-child{
+    color:grey;
+}

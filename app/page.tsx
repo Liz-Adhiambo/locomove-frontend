@@ -46,17 +46,11 @@ function ChooseUser({showModal, setShowModal}) {
 
 
 export default function Home() {
-    if (window.localStorage.getItem('token') != null) {
-        window.location.href = '/land';
-        return;
-    }
 
     const [showModal, setShowModal] = useState(false);
     const openModal = () => {
         setShowModal(prev => !prev);
     };
-
-    console.log(window.localStorage.getItem('user'));
 
   return (
     <main className={styles.main}>

@@ -2,6 +2,9 @@
 import { validateSignUp } from "@/features/validate";
 import styles from "./signup.module.css";
 import { fetchApiPost } from "@/features/api";
+import { Input } from "@nextui-org/react";
+import {Button} from "@nextui-org/react";
+
 
 
 export default function SignUp() {
@@ -21,7 +24,6 @@ export default function SignUp() {
             username: data.username,
             phone: data.phone,
             password: data.password,
-            role: window.localStorage.getItem("user"),
         }
 
         console.log(signUpObj);
@@ -41,36 +43,79 @@ export default function SignUp() {
 
         window.location.href = '/land';
     };
-
+    /*
+        {
+            "email":"mover2@gmail.com",
+            "password":"testing1234",
+            "first_name":"testdriver",
+            "last_name":"testing",
+            "username":"mover2",
+            "middle_name":"middle",
+            "dob":"2022-09-19",
+            "gender":"female"
+        }
+    */
     return (
         <div className={styles.container}>
             <h1>Sign Up</h1>
             <div className={styles.form}>
-                <form onSubmit={handleSubmit}>
-                <div className={styles.field}>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" />
-                </div>
-                <div className={styles.field}>
-                    <label htmlFor="username">Username</label>
-                    <input type="text" name="username" id="username" />
-                </div>
-                <div className={styles.field}>
-                    <label htmlFor="phone">Phone</label>
-                    <input type="text" name="phone" id="phone" />
-                </div>
-                <div className={styles.field}>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" />
-                </div>
-                <div className={styles.field}>
-                    <label htmlFor="cpassword">Confirm Password</label>
-                    <input type="password" name="cpassword" id="cpassword" />
-                </div>
-                <div className={styles.btncont}><button type="submit" className={styles.submit}>Sign Up</button></div>
+                <form onSubmit={handleSubmit} autocomplete="off">
+                    <div className={styles.field}>
+                        <Input
+                            type="email"
+                            label="Email"
+                            description="Please enter your email address."
+                            className="max-w-xs"
+                        />
+                    </div>
+                    <div className={styles.field}>
+                        <Input
+                            type="text"
+                            label="Phone Number"
+                            description="Format: 123-456-7890"
+                            className="max-w-xs"
+                        />
+                    </div>
+                    <div className={styles.field}>
+                        <Input
+                            type="text"
+                            label="Username"
+                            defaultValue=""
+                            description="Pick your preferred username."
+                            className="max-w-xs"
+                        />
+
+                    </div>
+                    <div className={styles.field}>
+                        <Input
+                            type="password"
+                            label="Password"
+                            defaultValue=""
+                            description="Please enter your password."
+                            className="max-w-xs"
+                        />
+
+                    </div>
+                    <div className={styles.field}>
+                        <Input
+                            type="password"
+                            label="Confirm Password"
+                            defaultValue=""
+                            description="Please confirm your password."
+                            className="max-w-xs"
+                        />
+                    </div>
+
+                    <div className={styles.btncont}>
+                        <Button
+                            type="submit"
+                            auto
+                            radius="sm"
+                            color="primary"
+                            >Sign Up</Button>
+                    </div>
                 </form>
             </div>
         </div>
-
     );
 }
