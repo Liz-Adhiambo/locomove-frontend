@@ -1,0 +1,150 @@
+.container {
+    display: flex;
+}
+
+.navbar {
+    width: 25%;
+    height: 100vh;
+    border-right: 1px solid lightgray;
+}
+
+.main {
+    width: 75%;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.navbar h1{
+    font-size:2rem;
+    font-weight:600;
+    text-align:center;
+    margin-top:5rem;
+}
+
+.avi {
+    width:fit-content;
+    margin: 5rem auto;
+    display: flex;
+}
+
+.options{
+    display:flex;
+    flex-direction:column;
+}
+
+.option{
+    border-top: 1px solid lightgray;
+    padding: 1rem 1rem;
+    cursor: pointer;
+}
+
+.option:hover{
+    background-color: lightgray;
+}
+
+.options div:last-child{
+    border-bottom: 1px solid lightgray;
+}
+
+.button {
+    width:fit-content;
+    margin: 5rem auto;
+}
+
+.main h1{
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top:5rem;
+    margin-bottom: 3rem;
+    padding-left: 3rem;
+}
+
+.drivers {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+
+.driver {
+    width: 400px;
+    height: 200px;
+    border: 2px solid green;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.driver:hover {
+    background-color: green;
+    color: white;
+}
+
+.driver .header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.driver .done{
+    font-size: 1.5rem;
+}
+
+.driver .footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.driver .footer .plate {
+    font-weight: bold;
+}
+
+.driver .active {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    align-items: center;
+
+}
+
+.active span:first-child{
+    width:15px;
+    height: 15px;
+    border-radius: 8px;
+    background-color: green;
+}
+
+.driver:hover ~ .active span:first-child {
+    background-color: white;
+}
+
+.adddriver {
+    width: 400px;
+    height: 200px;
+    background-color: green;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 7rem;
+    font-weight: 100;
+    border-radius: 10px;
+}
+
+.adddriver:hover {
+    background-color: white;
+    color: green;
+    border:2px solid green;
+}
+
+.adddriver p {
+    font-size: 1.2rem;
+    opacity: 0.7;
+}

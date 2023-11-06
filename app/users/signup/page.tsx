@@ -16,7 +16,7 @@ export default function SignUp() {
         const data = Object.fromEntries(formData);
 
         if (!validateSignUp(data)) {
-            return;
+            throw "invalid data";
         }
 
         const signUpObj = {
@@ -59,7 +59,7 @@ export default function SignUp() {
         <div className={styles.container}>
             <h1>Sign Up</h1>
             <div className={styles.form}>
-                <form onSubmit={handleSubmit} autocomplete="off">
+                <form onSubmit={handleSubmit} autoComplete="off">
                     <div className={styles.field}>
                         <Input
                             type="email"

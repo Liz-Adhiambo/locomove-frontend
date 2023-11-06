@@ -1,13 +1,14 @@
 import styles from "./requestCard.module.css";
-import {User, Button, Badge, Chip, Card, CardBody, CardFooter, CardHeader, Divider} from "@nextui-org/react";
+import {Button, Chip, Card, CardBody, CardFooter, CardHeader, Divider} from "@nextui-org/react";
 
+type Props = {
+    item: any
+    type: string
+}
+export default function RequestCard({item, type} : Props){
 
-export default function RequestCard({item, type}){
-
-    const cleanItems = (items) => {
-        items = items.replace("[", "")
-        items = items.replace("]", "")
-        items = items.replaceAll("\"", "")
+    const cleanItems = (items: string) => {
+        items = items.replace("[", "").replace("]","").replaceAll("\"","")
         return items.split(",")
     }
 
@@ -17,15 +18,15 @@ export default function RequestCard({item, type}){
     return (
         <Card className={styles.card}>
                         <CardHeader className={styles.cardheader}>
-                            <div>{item.from} -> {item.destination}</div>
+                            <div>{item.from} &gt;&gt; {item.destination}</div>
                             <div>{item.time}</div>
                         </CardHeader>
                         <Divider />
                         <CardBody>
-                            <p>List of items to be moved</p>
+                            <p>Items</p>
                             <div className={styles.items}>
                             {cleanItems(item.items).map( (it, i) =>
-                                <Chip>{it}</Chip>
+                                <Chip key={i}>{it}</Chip>
                             )}
                             </div>
                         </CardBody>
@@ -33,7 +34,7 @@ export default function RequestCard({item, type}){
                         <CardFooter className={styles.cardfooter}>
                             { type == "pending" &&
                             <>
-                                <Button color="warning" size="sm" radius="full">Cancel request</Button>
+                                <Button color="warning" size="sm" radius="full">View request details</Button>
                                 <Button size="sm" color="primary" radius="full">View bids</Button>
                             </>
 

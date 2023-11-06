@@ -1,13 +1,19 @@
 "use client";
 
 import { CameraIcon } from "@/components/CameraIcon";
-import styles from "./land.module.css";
-import {User, Button, Badge, Chip, Card, CardBody, CardFooter, CardHeader, Divider} from "@nextui-org/react";
+import styles from "./dash.module.css";
+import {User, Button, Chip} from "@nextui-org/react";
 import {useEffect, useState} from "react";
 import {Input} from "@nextui-org/react";
 import RequestCard from "@/components/RequestCard";
+import Link from "next/link";
+import { Comme } from "next/font/google";
 
-function NavBar({setNav}) {
+type NavProps = {
+    setNav: (arg0: string)=>void
+}
+
+function NavBar({setNav} :NavProps) {
     return (
     <>
         <div className={styles.avi}>
@@ -27,9 +33,11 @@ function NavBar({setNav}) {
             <div className={styles.option} onClick={() => setNav("completed")}>
                 Completed
             </div>
-            <div className={styles.option} onClick={() => setNav("profile")}>
+            <Link href={"/users/profile"}>
+            <div className={styles.option}>
                 Profile
             </div>
+            </Link>
         </div>
 
 
@@ -42,18 +50,20 @@ function NavBar({setNav}) {
 
     );
 }
+
+type Item = any
 function Main() {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState<Item>([]);
 
     //form methods
-    const addItem = (e) => {
+    const addItem = (e: any) => {
         e.preventDefault();
         const item = e.target[0].value;
         e.target.reset();
         setItems([...items, item]);
     }
 
-    const removeItem = (index) => {
+    const removeItem = (index: number) => {
         const newItems = [...items];
         newItems.splice(index, 1);
         setItems(newItems);
@@ -75,23 +85,23 @@ function Main() {
 
     return (
         <>
-            <h1> Make a move request </h1>
+            <h1>Request to Move</h1>
 
             <div className={styles.form}>
                 <div className={styles.items}>
-                    {items.map((item, idx) =>
+                    {items.map((item: any, idx: number) =>
                         <Chip onClose={()=>{removeItem(idx)}} key={idx}>
                             {item}
                         </Chip>
                     )}
                 </div>
                 <form onSubmit={addItem}>
-                    <Input name="item" label="Enter items you want to move" labelPlacement="outside" description="Press enter after entering an item"/>
+                    <Input name="item" label="Enter items you want to move" labelPlacement="outside" description="Press enter after entering an item" isRequired/>
                 </form>
                 <form onSubmit={handleSubmit}>
-                    <Input name="from" label="Where are the items being picked" labelPlacement="outside" description="Choose location" required/>
-                    <Input name="destination" label="Where are the items headed" labelPlacement="outside" description="Choose location" required/>
-                    <Input type="time" label="When will they be picked" labelPlacement="outside" required/>
+                    <Input name="from" label="Where are the items being picked" labelPlacement="outside" description="Choose location" isRequired/>
+                    <Input name="destination" label="Where are the items headed" labelPlacement="outside" description="Choose location" isRequired/>
+                    <Input type="date" label="" labelPlacement="outside" description="Enter date" isRequired/>
                     <Input type="submit" color="success" value="submit" />
                 </form>
             </div>
@@ -99,11 +109,12 @@ function Main() {
     );
 }
 
+type Request = any
 function Pending () {
-    const [requests, setRequests] = useState([]);
+    const [requests, setRequests] = useState<Request>([]);
 
     useEffect(() => {
-        const request = JSON.parse(window.localStorage.getItem('data'));
+        const request = JSON.parse((window.localStorage.getItem('data')) as string);
         if (request == "" || request == null){
             return
         }
@@ -119,12 +130,35 @@ function Pending () {
     <>
         <h1>Here are your pending orders</h1>
         <div className={styles.requests}>
-            {requests.map( (r, i) =>
+            {requests.map( (r: any, i: number) =>
                 <RequestCard key={i} item={r} type={"pending"}/>
             )}
         </div>
     </>
     );
+}
+
+function Completed () {
+    const completed = [
+        {
+            from: "Ongata Rongai",
+            destination: "Nairobi CBD",
+            items: "[\"Hello\"]",
+            time: "12th Nov 10:55am",
+            type: "completed"
+        }
+    ]
+
+    return (
+        <>
+            <h1> Your completed orders </h1>
+            <div className={styles.requests}>
+                {completed.map( (r: any, i: number) =>
+                    <RequestCard key={i} item={r} type={r.type}/>
+                )}
+            </div>
+        </>
+    )
 }
 
 export default function Land() {
@@ -141,6 +175,7 @@ export default function Land() {
             {nav == "pending" &&
                 <Pending />
             }
+            {nav == "completed" && <Completed /> }
             </div>
         </div>
     );
