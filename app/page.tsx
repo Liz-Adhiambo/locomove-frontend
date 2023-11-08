@@ -22,7 +22,8 @@ function ChooseUser({showModal, setShowModal}) {
                 <div>
                 <button className={styles.chooseclient} onClick={
                     () => {
-                        setUser('client');
+                        window.localStorage.setItem('user', "client");
+                        window.location.href = '/users/signup';
                     }
                 }>Continue as Client</button>
                 </div>
@@ -30,12 +31,15 @@ function ChooseUser({showModal, setShowModal}) {
                     <h1>OR</h1>
                 <button className={styles.choosedriver} onClick={
                     () => {
-                        setUser('driver');
+                        window.localStorage.setItem('user', "driver");
+                        window.location.href = '/users/signup';
+
                     }
                 }>Continue as Driver</button>
                 <button className={styles.chooseowner} onClick={
                     () => {
-                        setUser('owner');
+                        window.localStorage.setItem('user', "owner");
+                        window.location.href = '/users/signup';
                     }
                 }>Continue as Owner</button>
                 </div>

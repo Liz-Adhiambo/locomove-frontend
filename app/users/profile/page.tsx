@@ -53,7 +53,7 @@ export default function Profile(){
 
                         <div className={styles.field}>
                             <label htmlFor="Username"> Username </label>
-                            <Input name="username" id="username" value="Doejane" description="Change your "/>
+                            <Input name="username" id="username" value="Doejane" description="Change your username"/>
                         </div>
 
                     </div>

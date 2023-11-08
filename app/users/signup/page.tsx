@@ -16,7 +16,8 @@ export default function SignUp() {
         const data = Object.fromEntries(formData);
 
         if (!validateSignUp(data)) {
-            throw "invalid data";
+            alert("Invalid data")
+            return
         }
 
         const signUpObj = {
